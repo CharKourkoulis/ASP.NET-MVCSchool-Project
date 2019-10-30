@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MyMVCSchool.Models.Trainer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Trainers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p>
+    @using (Html.BeginForm())
+    {
+    <p>
+        Title: @Html.TextBox("TrainerSearch", null, new { @placeholder = "Type a Trainer Name..." }) <br />
+        <input type="submit" value="Filter" />
+    </p>
+}
+    </p>
+
+    <!--
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Course)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageURL)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageURL)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        -->
+
+
+    @foreach (var item in Model)
+    {
+        <div class="media">
+            <div class="media-left media-top">
+                <img src="@Html.DisplayFor(modelItem => item.ImageURL)" class="media-object" style="height:100px">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"> @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</h4>
+
+                <p> @Html.DisplayNameFor(model => model.Subject): @Html.DisplayFor(modelItem => item.Subject)</p>
+                <p> @Html.DisplayNameFor(model => model.Course): @Html.DisplayFor(modelItem => item.Course)</p>
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </div>
+        </div>
+    }
